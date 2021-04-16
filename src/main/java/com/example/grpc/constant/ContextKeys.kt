@@ -7,11 +7,8 @@ import org.springframework.stereotype.Component
 @Component
 class ContextKeys {
     // 인스턴스로 생성되어있어야 Context 키에 대한 밸류를 얻어올수 있다,
-    @JvmField
     var APP_TRANSACTION = Context.key<String>("app-transaction")!!
-    @JvmField
     var METHOD = Context.key<String>("grpc-request-method")!!
-    @JvmField
     var REQUEST_START_TIME = Context.key<Long>("request-time")!!
     fun transactionIdToMDC() {
         val appId = APP_TRANSACTION.get()

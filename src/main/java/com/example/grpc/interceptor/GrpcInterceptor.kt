@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component
 open class GrpcInterceptor : ServerInterceptor {
 
     @Autowired
-    private val keys: ContextKeys? = null;
+    lateinit var keys: ContextKeys;
 
     // 클라이언트에서 전송한 Metadata에서 "app-transaction"을 추출
     private fun getTransactionId(metadata: Metadata): String? {

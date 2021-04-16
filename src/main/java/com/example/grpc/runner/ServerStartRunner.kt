@@ -18,7 +18,7 @@ import java.lang.Exception
 open class ServerStartRunner : ApplicationRunner, DisposableBean {
 
     @Autowired
-    private val grpcServer: Server? = null
+    lateinit var grpcServer: Server
 
     // grpc는 별개의 netty서버를 구동시켜야 하므로 runner 사용
     @Throws(Exception::class)

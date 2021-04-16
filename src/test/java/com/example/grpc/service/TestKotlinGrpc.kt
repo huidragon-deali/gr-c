@@ -33,20 +33,20 @@ class TestKotlinGrpc {
     var log: Logger = LoggerFactory.getLogger(this.javaClass)
 
     @Rule @JvmField
-    public var grpcCleanUp = GrpcCleanupRule()
+    var grpcCleanUp = GrpcCleanupRule()
 
     private val serverName = InProcessServerBuilder.generateName()
     private val serverBuilder = InProcessServerBuilder.forName(serverName).directExecutor()
     private val channelBuilder = InProcessChannelBuilder.forName(serverName).directExecutor()
 
     @Autowired
-    var service: GrpcService? = null
+    private lateinit var service: GrpcService
 
     @Autowired
-    var interceptor: GrpcInterceptor? = null
+    private lateinit var interceptor: GrpcInterceptor
 
     // 구글에서는 하나의 서버에 하나의 채널 사용을 권고
-    var channel: ManagedChannel? = null
+    private lateinit var channel: ManagedChannel
 
     @Before
     @Throws(IOException::class)

@@ -15,19 +15,19 @@ import org.springframework.context.annotation.Configuration
 open class GrpcServerConfig {
 
     @Value("\${grpc.port:8888}")
-    var grpcPort: Int? = null
+    lateinit var grpcPort: Number
 
     @Autowired
-    private val handler: GrpcInterceptor? = null
+    lateinit var handler: GrpcInterceptor
 
     @Autowired
-    private val rpcService: GrpcService? = null
+    lateinit var rpcService: GrpcService
 
     // Grpc Java는 Netty 기반 http2.0 프로토콜을 사용
     @Bean
     open fun grpcServer(): Server {
         return ServerBuilder
-            .forPort(grpcPort!!)
+            .forPort(grpcPort.toInt())
             .addService(rpcService)
             .intercept(handler)
             .build()
